@@ -1,8 +1,11 @@
-## hack(Comedy) web application
+## Hack(Comedy) Web Application
 
 ![cover image](/src/assets/img/Brand_Interface_group.png)
 
 > “Hack(Comedy)” is a computational comedy interface that aims to interrogate our perception of humor through a procedurally live generation that copies and reflects condensed themes and identities in the American comedy landscape. The artist undertakes an unexpected method of programming to achieve comic absurdity by generating materials from borrowed comic sources.
+
+## You can try it here
+[hackcomedy.net](www.hackcomedy.net)
 
 ## How to interact
 
@@ -13,19 +16,18 @@
 
 ## Structure
 
-This application is built with Vue.js.
+This application is built with Vue Cli.
 
-## Build Setup
+## Clone and Run locally
 
 ``` bash
+
 # install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run serve
 
-# build for production with minification
-npm run build
 ```
 
 
@@ -34,6 +36,7 @@ npm run build
 - Rant-individualized?
 - Add more source
 - Add revelation/info/about
-- Deploy with Vue Cli?
+- Source word count
+- Write mode exclusive
 
 Copyright (c) 2020 Lan Zhang
