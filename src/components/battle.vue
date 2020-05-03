@@ -6,7 +6,7 @@
         @keydown.enter.prevent="submit_sentence"
         cols="40"
         rows="5"
-        placeholder="You can type words or phrases here and hit 'ENTER' or press 'Write'."
+        placeholder="You can type words or phrases here and hit 'ENTER' or press 'Write'. All selected comedians will generate at the same time."
         required
       ></textarea>
     </div>

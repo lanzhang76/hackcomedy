@@ -1,10 +1,16 @@
 <template>
   <div class="source_box">
     <br />
-    <p ref="nameC">Source</p>
+    <!-- <p ref="nameC" class="caption">
+      <b>Source</b>
+    </p>-->
     <ul class="caption">
-      <li v-for="(j,key) in uploadCaptions(comcap)" :key="key">{{j}}</li>
+      <li v-for="(j,key) in uploadCaptions(comcap.name)" :key="key">{{j}}</li>
     </ul>
+    <span class="caption">
+      <b>total:</b>
+      {{comcap.count}} words
+    </span>
   </div>
 </template>
 
@@ -13,7 +19,7 @@ import json from "../assets/jsons/captions.json";
 
 export default {
   name: "sourceCaption",
-  props: { comcap: String },
+  props: { comcap: { name: "", count: 0 } },
   data() {
     return {
       comChosen: "bill",
@@ -43,7 +49,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .caption {
   font-size: 0.5em;
 }

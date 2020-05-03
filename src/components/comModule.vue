@@ -9,27 +9,31 @@
     <div class="output_box">
       <p>
         <span v-for="({input, output},key) in conversationChain" :key="key">
-          <span style="color:#9770EA">{{" " + input}}<span style="color:black">{{output}}</span>
+          <span style="color:#9770EA">
+            {{" " + input}}
+            <span style="color:black">{{output}}</span>
           </span>
         </span>
       </p>
     </div>
     <textarea
+      v-show="writeMode"
       ref="textinput"
       @keydown.enter.prevent="init"
       cols="40"
       rows="1"
       placeholder="'I want a','bunnies like','my passion is'"
     ></textarea>
-
-    <sourceCaption v-show="captionWanted" v-bind:comcap="this.comedian_name"></sourceCaption>
+    <sourceCaption
+      v-show="captionWanted"
+      v-bind:comcap="{name:this.comedian_name,count: wordcount()}"
+    ></sourceCaption>
   </div>
 </template>
 
 
 <script>
 import { bus } from "../main";
-// import { generateEnd } from "./Markov.js";
 import { generateEnd } from "./ngram.js";
 import { rant } from "./rant.js";
 import sourceCaption from "./sourceCaption.vue";
@@ -51,14 +55,15 @@ export default {
     captionWanted: {
       type: Boolean,
       default: true
-    }
+    },
+    selmode: []
   },
   components: {
     sourceCaption
   },
   data() {
     return {
-      // battleCompilation: [{ battleOut: "some" }],
+      writeMode: true,
       text_label: this.comedian_name,
       show_captions: this.captionWanted,
       conversationChain: [
@@ -95,19 +100,29 @@ export default {
     },
     init: function() {
       let current_sentence = this.$refs.textinput.value;
-      current_sentence =
-        current_sentence[0] + current_sentence.slice(1).toLowerCase();
+      if (current_sentence != "") {
+        current_sentence =
+          current_sentence[0] + current_sentence.slice(1).toLowerCase();
+        let selected_corpus = this.nameCheck(this.text_label);
+        let sentence = generateEnd(current_sentence, selected_corpus);
+        this.$refs.textinput.value = "";
+        this.appendToConversation(sentence[0], sentence[1]);
+      }
+    },
+    wordcount: function() {
       let selected_corpus = this.nameCheck(this.text_label);
-      let sentence = generateEnd(current_sentence, selected_corpus);
-      this.$refs.textinput.value = "";
-      this.appendToConversation(sentence[0], sentence[1]);
-      this.scrollBottom();
+      return selected_corpus.split(" ").length;
+    },
+    scrollB: function() {
+      var container = this.$el.querySelector(".output_box");
+      container.scrollTop = container.scrollHeight + 50;
     },
     appendToConversation(input1, input2) {
       this.conversationChain.push({
         input: input1,
         output: input2.replace(input1, "")
       });
+      this.scrollB();
     },
     init_byKey: function(e) {
       if (e.keyCode === 13 && !e.shiftKey) {
@@ -117,12 +132,13 @@ export default {
     },
     battleToText: function(battleIn) {
       let current_battleIn = battleIn;
-      current_battleIn =
-        current_battleIn[0] + current_battleIn.slice(1).toLowerCase();
-      let selected_corpus = this.nameCheck(this.text_label);
-      let sentence = generateEnd(current_battleIn, selected_corpus);
-      this.appendToConversation(sentence[0], sentence[1]);
-      this.scrollBottom();
+      if (current_battleIn != "") {
+        current_battleIn =
+          current_battleIn[0] + current_battleIn.slice(1).toLowerCase();
+        let selected_corpus = this.nameCheck(this.text_label);
+        let sentence = generateEnd(current_battleIn, selected_corpus);
+        this.appendToConversation(sentence[0], sentence[1]);
+      }
     },
     // ranting mode
     rantToText: function(rantIn) {
@@ -145,12 +161,7 @@ export default {
           });
         }
         i++;
-        this.scrollBottom();
       }, 300);
-    },
-    scrollBottom: function() {
-      var container = this.$el.querySelector(".output_box");
-      container.scrollTop = container.scrollHeight + 10;
     },
     cleanOutput: function() {
       this.conversationChain = [];
@@ -160,12 +171,15 @@ export default {
     bus.$on("battleF", this.battleToText);
     bus.$on("clean", this.cleanOutput);
     bus.$on("rantM", this.rantToText);
+    bus.$on("txtarea", tag => {
+      this.writeMode = tag == "write" ? true : false;
+    });
   }
 };
 </script>
 
 
-<style scoped>
+<style>
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap);
 .comedian-module {
   display: inline-block;
@@ -176,7 +190,6 @@ export default {
   border: 1px solid black;
   border-radius: 5px;
   width: 270px;
-  margin: 0 auto;
 }
 
 textarea {
@@ -192,8 +205,8 @@ textarea {
   margin-top: 10px;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  max-height: 340px;
-  overflow-y: auto;
+  /* max-height: 340px;
+  overflow-y: auto; */
 }
 
 .output_box span {

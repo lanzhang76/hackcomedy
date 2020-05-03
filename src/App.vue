@@ -29,15 +29,17 @@
           <h4>2. Select Modes</h4>
           <modes />
         </div>
-
+        <hr />
         <div class="sub-item check_box" id="reference_box">
-          <h4>Info</h4>
+          <h4>3. Everything else</h4>
           <input v-model="caption_wanted" type="checkbox" />
           <label>Show source: {{caption_wanted}}</label>
           <br />
-          <!-- <input v-model="about" type="checkbox" />
-          <label>About</label>
-          <p v-show="about">{{about_info}}</p>-->
+          <input v-model="about" type="checkbox" />
+          <label>About Hack(Comedy)</label>
+          <br />
+          <input v-model="credits" type="checkbox" />
+          <label>Behind the scene</label>
         </div>
         <div class="sub-item" id="credits">Lan Zhang | computational comedy | 2020</div>
       </div>
@@ -47,6 +49,8 @@
         <div class="modules" v-for="(i,key) in selected" :key="key">
           <comModule v-bind:comedian_name="i" v-bind:captionWanted="caption_wanted" />
         </div>
+        <about class="modules" v-show="about" />
+        <credits class="modules" v-show="credits" />
       </div>
     </div>
   </div>
@@ -56,13 +60,17 @@
 import comModule from "./components/comModule.vue";
 import modes from "./components/modes";
 import logo from "./components/logo";
+import about from "./components/about";
+import credits from "./components/credits";
 
 export default {
   name: "app",
   components: {
     comModule,
     modes,
-    logo
+    logo,
+    about,
+    credits
   },
   data() {
     return {
@@ -78,10 +86,7 @@ export default {
       selected: [],
       caption_wanted: false,
       about: false,
-      about_info:
-        "“Hack(Comedy)” is a computational comedy interface that aims to interrogate our perception of humor through a procedurally live generation that copies and reflects condensed themes and identities in the American comedy landscape.",
-      artist_info:
-        "The artist undertakes an unexpected method of programming to achieve comic absurdity by generating materials from borrowed comic sources."
+      credits: false
     };
   }
 };

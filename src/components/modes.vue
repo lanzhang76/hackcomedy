@@ -28,33 +28,19 @@
     <div class="sub-mode">
       <input type="radio" id="three" value="Rant" v-model="picked" @click="checkBattle('rant')" />
       <label for="two">Rant</label>
+      <p
+        v-show="rantBool"
+        class="caption"
+      >Let the comedians say whatever they want. You just need to tell them how many words you want to see.</p>
       <rantMode v-show="rantBool"></rantMode>
-      <!-- <div class="caption"  id="rant_box">
-        <input type="text" id="rant_length" placeholder="Output word-length" />
-        <br />
-        <button onclick="dothis()">Start</button>
-      </div>-->
     </div>
-    <!-- <div class="sub-mode">
-      <battle v-show="strikeBool"></battle>
-      <input
-        type="radio"
-        id="three"
-        value="Connect & Conduct"
-        v-model="picked"
-        @click="checkBattle('strike')"
-      />
-      <label for="two">
-        <strike>Connect & Conduct</strike>
-      </label>
-      <p v-show="strikeBool" class="caption">Connect with other machines</p>
-    </div>-->
   </div>
 </template>>
 
 <script>
 import battle from "./battle";
 import rantMode from "./rantMode";
+import { bus } from "../main";
 
 export default {
   name: "modes",
@@ -65,7 +51,6 @@ export default {
   data() {
     return {
       picked: "Write",
-
       writeBool: true,
       groupBool: false,
       rantBool: false
@@ -73,6 +58,7 @@ export default {
   },
   methods: {
     checkBattle: function(tag) {
+      bus.$emit("txtarea", tag);
       if (tag == "write") {
         this.writeBool = true;
         this.groupBool = this.rantBool = false;
