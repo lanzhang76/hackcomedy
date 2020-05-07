@@ -6,8 +6,12 @@
       You can learn more about her process
       <a
         href="https://www.notion.so/Hack-Comedy-2c610dde29eb48cebd6f8f5c0cfdf961"
+        target="”_blank”"
       >here</a> and the technical repo
-      <a href="https://github.com/lanzhang76/hackcomedy">here</a>.
+      <a
+        href="https://github.com/lanzhang76/hackcomedy"
+        target="”_blank”"
+      >here</a>.
     </div>
     <span class="caption" id="intro">The site is built with Vue.js</span>
   </div>
