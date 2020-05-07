@@ -9,9 +9,7 @@
     <div class="output_box">
       <p>
         <span v-for="({input, output},key) in conversationChain" :key="key">
-          <span style="color:#9770EA">
-            {{" " + input}}
-            <span style="color:black">{{output}}</span>
+          <span style="color:#9770EA">{{" " + input}<span style="color:black">{{output}}</span>
           </span>
         </span>
       </p>

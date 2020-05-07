@@ -36,10 +36,10 @@
           <label>Show source: {{caption_wanted}}</label>
           <br />
           <input v-model="about" type="checkbox" />
-          <label>About Hack(Comedy)</label>
+          <label>In the spotlight</label>
           <br />
           <input v-model="credits" type="checkbox" />
-          <label>Behind the scene</label>
+          <label>Behind the scenes</label>
         </div>
         <div class="sub-item" id="credits">Lan Zhang | computational comedy | 2020</div>
       </div>
