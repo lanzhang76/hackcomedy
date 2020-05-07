@@ -2,16 +2,13 @@
   <div class="comedian-module">
     <!-- <h4 style="color:#9770EA">About</h4> -->
     <div class="output_box">
-      The virtual comedians are built with n-gram/Markov Chains model and comedians’ transcripts Lan scraped from the internet.
-      You can learn more about her process
+      The virtual comedians are built with n-gram/Markov Chains model. The comedians’ transcripts are scraped from the internet.
+      You can learn more about the creative process of this project
       <a
         href="https://www.notion.so/Hack-Comedy-2c610dde29eb48cebd6f8f5c0cfdf961"
         target="”_blank”"
-      >here</a> and the technical repo
-      <a
-        href="https://github.com/lanzhang76/hackcomedy"
-        target="”_blank”"
-      >here</a>.
+      >here</a> and the Git repo
+      <a href="https://github.com/lanzhang76/hackcomedy" target="”_blank”">here</a>.
     </div>
     <span class="caption" id="intro">The site is built with Vue.js</span>
   </div>
