@@ -55,7 +55,7 @@ export function generateEnd(current_sentence, text) {
     var trimmed = current_sentence.trim()
     var sen = trimmed;
     // var reg = /[a-z][.?!)}]["']?/g; //end of sentence
-    var reg = /[a-z](\s+)?(\W)*([.?!)}])+["']?/g
+    var reg = /\w(\W)*[.?!)}:;\-']["']?/g
     while (sen.match(reg) == null) {
         try {
             var word_to_add = nextWord(sen, text)
@@ -64,8 +64,6 @@ export function generateEnd(current_sentence, text) {
                 : sen = sen + " " + word_to_add
         } catch (error) {
             console.error(error);
-            // expected output: ReferenceError: nonExistentFunction is not defined
-            // Note - error messages will vary depending on browser
         }
     }
     return [trimmed, sen]
