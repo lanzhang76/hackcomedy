@@ -26,21 +26,21 @@ export default {
     return {};
   },
   methods: {
-    init_byKey: function(e) {
+    init_byKey: function (e) {
       if (e.keyCode === 13) {
         console.log("battle submitted");
         this.submit_sentence();
       }
     },
-    submit_sentence: function() {
+    submit_sentence: function () {
       let current_sentence = this.$refs.battletextinput.value;
       bus.$emit("battleF", current_sentence.replace("\n", ""));
       this.$refs.battletextinput.value = "";
     },
-    clean: function() {
+    clean: function () {
       bus.$emit("clean");
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -65,12 +65,15 @@ export default {
   padding: 5px;
   box-sizing: border-box;
   width: 100%;
+  max-width: 230px;
+  min-width: 200px;
 }
 
 .textInput button {
   font-size: 0.4em;
   color: white;
   background-color: black;
+  margin: 0 5px 0 0;
   outline: none;
 }
 </style>

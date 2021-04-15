@@ -5,11 +5,14 @@
       <span class="tooltiptext">clean</span>
     </button>
 
-    <h4 ref="comedian_code">{{comedian_name}}</h4>
+    <h4 ref="comedian_code">{{ comedian_name }}</h4>
     <div class="output_box">
       <p>
-        <span v-for="({input, output},key) in conversationChain" :key="key">
-          <span style="color:#9770EA">{{" " + input}}<span style="color:black">{{output}}</span></span>
+        <span v-for="({ input, output }, key) in conversationChain" :key="key">
+          <span style="color: #9770ea"
+            >{{ " " + input
+            }}<span style="color: black">{{ output }}</span></span
+          >
         </span>
       </p>
     </div>
@@ -23,7 +26,7 @@
     ></textarea>
     <sourceCaption
       v-show="captionWanted"
-      v-bind:comcap="{name:this.comedian_name,count: wordcount()}"
+      v-bind:comcap="{ name: this.comedian_name, count: wordcount() }"
     ></sourceCaption>
   </div>
 </template>
@@ -47,16 +50,16 @@ export default {
   props: {
     comedian_name: {
       type: String,
-      default: ""
+      default: "",
     },
     captionWanted: {
       type: Boolean,
-      default: true
+      default: true,
     },
-    selmode: []
+    selmode: [],
   },
   components: {
-    sourceCaption
+    sourceCaption,
   },
   data() {
     return {
@@ -66,9 +69,9 @@ export default {
       conversationChain: [
         {
           input: "",
-          output: ""
-        }
-      ]
+          output: "",
+        },
+      ],
     };
   },
   watch: {
@@ -78,7 +81,7 @@ export default {
     // }
   },
   methods: {
-    nameCheck: function(label) {
+    nameCheck: function (label) {
       if (label == "Aziz Ansari") {
         return aziz;
       } else if (label == "Jerry Seinfeld") {
@@ -95,7 +98,7 @@ export default {
         return kevin;
       }
     },
-    init: function() {
+    init: function () {
       let current_sentence = this.$refs.textinput.value;
       if (current_sentence != "") {
         current_sentence =
@@ -106,28 +109,28 @@ export default {
         this.appendToConversation(sentence[0], sentence[1]);
       }
     },
-    wordcount: function() {
+    wordcount: function () {
       let selected_corpus = this.nameCheck(this.text_label);
       return selected_corpus.split(" ").length;
     },
-    scrollB: function() {
+    scrollB: function () {
       var container = this.$el.querySelector(".output_box");
       container.scrollTop = container.scrollHeight + 50;
     },
     appendToConversation(input1, input2) {
       this.conversationChain.push({
         input: input1,
-        output: input2.replace(input1, "")
+        output: input2.replace(input1, ""),
       });
       this.scrollB();
     },
-    init_byKey: function(e) {
+    init_byKey: function (e) {
       if (e.keyCode === 13 && !e.shiftKey) {
         e.preventDefault();
         this.init();
       }
     },
-    battleToText: function(battleIn) {
+    battleToText: function (battleIn) {
       let current_battleIn = battleIn;
       if (current_battleIn != "") {
         current_battleIn =
@@ -138,14 +141,14 @@ export default {
       }
     },
     // ranting mode
-    rantToText: function(rantIn) {
+    rantToText: function (rantIn) {
       let rant_length = rantIn;
       let selected_corpus = this.nameCheck(this.text_label);
 
       var txt = rant(selected_corpus, rant_length).trim();
       this.rantTXT(txt);
     },
-    rantTXT: function(txt) {
+    rantTXT: function (txt) {
       var l = txt.split(" ");
 
       var self = this.conversationChain;
@@ -154,24 +157,24 @@ export default {
         if (i < l.length) {
           self.push({
             input: "",
-            output: l[i]
+            output: l[i],
           });
         }
         i++;
       }, 300);
     },
-    cleanOutput: function() {
+    cleanOutput: function () {
       this.conversationChain = [];
-    }
+    },
   },
   created() {
     bus.$on("battleF", this.battleToText);
     bus.$on("clean", this.cleanOutput);
     bus.$on("rantM", this.rantToText);
-    bus.$on("txtarea", tag => {
+    bus.$on("txtarea", (tag) => {
       this.writeMode = tag == "write" ? true : false;
     });
-  }
+  },
 };
 </script>
 
@@ -187,6 +190,11 @@ export default {
   border: 1px solid black;
   border-radius: 5px;
   width: 270px;
+  position: relative;
+}
+
+.comedian-module h4 {
+  margin: 10px 0 5px 0;
 }
 
 textarea {
@@ -195,7 +203,10 @@ textarea {
   outline: none;
   padding: 5px;
   box-sizing: border-box;
+  position: relative;
   width: 100%;
+  max-width: 100%;
+  min-width: 100%;
 }
 
 .output_box {
@@ -213,6 +224,7 @@ textarea {
 .comedian-module button {
   float: right;
   color: gray;
+  background: transparent;
   outline: none;
   border: none;
 }

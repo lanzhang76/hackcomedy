@@ -7,12 +7,18 @@
     <br />
     <br />
     <div class="sub-mode">
-      <input type="radio" id="one" value="Write" v-model="picked" @click="checkBattle('write')" />
+      <input
+        type="radio"
+        id="one"
+        value="Write"
+        v-model="picked"
+        @click="checkBattle('write')"
+      />
       <label for="one">Write</label>
-      <p
-        v-show="writeBool"
-        class="caption"
-      >Inside each comedian module, type words or phrases in the text box. After you hit 'ENTER', the virtual comedian will complete your sentence.</p>
+      <p v-show="writeBool" class="caption">
+        Inside each comedian module, type words or phrases in the text box.
+        After you hit 'ENTER', the virtual comedian will complete your sentence.
+      </p>
     </div>
     <div class="sub-mode">
       <input
@@ -26,12 +32,18 @@
       <battle v-show="groupBool"></battle>
     </div>
     <div class="sub-mode">
-      <input type="radio" id="three" value="Rant" v-model="picked" @click="checkBattle('rant')" />
+      <input
+        type="radio"
+        id="three"
+        value="Rant"
+        v-model="picked"
+        @click="checkBattle('rant')"
+      />
       <label for="two">Rant</label>
-      <p
-        v-show="rantBool"
-        class="caption"
-      >Let the comedians say whatever they want. You just need to tell them how many words you want to see.</p>
+      <p v-show="rantBool" class="caption rantCap">
+        Let the comedians say whatever they want. You just need to tell them how
+        many words you want to see.
+      </p>
       <rantMode v-show="rantBool"></rantMode>
     </div>
   </div>
@@ -46,18 +58,18 @@ export default {
   name: "modes",
   components: {
     battle,
-    rantMode
+    rantMode,
   },
   data() {
     return {
       picked: "Write",
       writeBool: true,
       groupBool: false,
-      rantBool: false
+      rantBool: false,
     };
   },
   methods: {
-    checkBattle: function(tag) {
+    checkBattle: function (tag) {
       bus.$emit("txtarea", tag);
       if (tag == "write") {
         this.writeBool = true;
@@ -69,8 +81,8 @@ export default {
         this.rantBool = true;
         this.writeBool = this.groupBool = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -78,6 +90,9 @@ export default {
 .caption {
   font-size: 0.5em;
   color: gray;
-  padding: 2px;
+  padding: 2px 10px;
+}
+
+.rantCap {
 }
 </style>

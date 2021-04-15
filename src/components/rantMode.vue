@@ -22,21 +22,21 @@ export default {
     return {};
   },
   methods: {
-    init_byKey: function(e) {
+    init_byKey: function (e) {
       if (e.keyCode === 13) {
         console.log("battle submitted");
         this.submit_rant();
       }
     },
-    submit_rant: function() {
+    submit_rant: function () {
       let rant_length = this.$refs.rantLengthInput.value;
       bus.$emit("rantM", rant_length);
       this.$refs.rantLengthInput.value = "";
     },
-    clean: function() {
+    clean: function () {
       bus.$emit("clean");
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -62,5 +62,6 @@ export default {
   color: white;
   background-color: black;
   outline: none;
+  margin: 0 5px 0 0;
 }
 </style>

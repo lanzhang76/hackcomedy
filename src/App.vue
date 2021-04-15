@@ -3,10 +3,11 @@
     <div class="container">
       <div class="item" id="menu">
         <div class="sub-item">
-          <h2>
-            <span style="color:#9770ea">Hack</span>(Comedy)
-          </h2>
-          <p>Explore the condensed identities and themes of the American stand-up comedy landscape</p>
+          <h2><span style="color: #9770ea">Hack</span>(Comedy)</h2>
+          <p>
+            Explore the condensed identities and themes of the American stand-up
+            comedy landscape
+          </p>
         </div>
         <div class="sub-item" id="comedian_labels">
           <hr />
@@ -15,12 +16,16 @@
           <div
             id="ck-button"
             class="check_box"
-            v-for="({comedian_name},key) in comedians"
+            v-for="({ comedian_name }, key) in comedians"
             :key="key"
           >
             <label>
-              <input v-model="selected" v-bind:value="comedian_name" type="checkbox" />
-              <span>{{comedian_name}}</span>
+              <input
+                v-model="selected"
+                v-bind:value="comedian_name"
+                type="checkbox"
+              />
+              <span>{{ comedian_name }}</span>
             </label>
           </div>
         </div>
@@ -33,7 +38,7 @@
         <div class="sub-item check_box" id="reference_box">
           <h4>3. Everything else</h4>
           <input v-model="caption_wanted" type="checkbox" />
-          <label>Show source: {{caption_wanted}}</label>
+          <label>Show source: {{ caption_wanted }}</label>
           <br />
           <input v-model="about" type="checkbox" />
           <label>In the spotlight</label>
@@ -41,13 +46,18 @@
           <input v-model="credits" type="checkbox" />
           <label>Behind the scenes</label>
         </div>
-        <div class="sub-item" id="credits">Lan Zhang | computational comedy | 2020</div>
+        <div class="sub-item" id="credits">
+          Lan Zhang | computational comedy | 2020
+        </div>
       </div>
 
       <div class="item" id="main">
         <logo />
-        <div class="modules" v-for="(i,key) in selected" :key="key">
-          <comModule v-bind:comedian_name="i" v-bind:captionWanted="caption_wanted" />
+        <div class="modules" v-for="(i, key) in selected" :key="key">
+          <comModule
+            v-bind:comedian_name="i"
+            v-bind:captionWanted="caption_wanted"
+          />
         </div>
         <about class="modules" v-show="about" />
         <credits class="modules" v-show="credits" />
@@ -70,7 +80,7 @@ export default {
     modes,
     logo,
     about,
-    credits
+    credits,
   },
   data() {
     return {
@@ -81,14 +91,14 @@ export default {
         { comedian_name: "Jerry Seinfeld" },
         { comedian_name: "Ali Wong" },
         { comedian_name: "Louis C.K." },
-        { comedian_name: "Kevin Hart" }
+        { comedian_name: "Kevin Hart" },
       ],
       selected: [],
       caption_wanted: false,
       about: false,
-      credits: false
+      credits: false,
     };
-  }
+  },
 };
 </script>
 
@@ -127,6 +137,10 @@ body {
   overflow-y: scroll;
 }
 
+#main::-webkit-scrollbar {
+  display: none;
+}
+
 #app {
   font-family: "Roboto Mono", monospace;
   -webkit-font-smoothing: antialiased;
@@ -141,7 +155,7 @@ body {
 }
 
 #ck-button {
-  margin: 1px;
+  margin: 3px;
   background-color: #efefef;
   border-radius: 2px;
   border: 1px solid #d0d0d0;
