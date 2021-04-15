@@ -5,6 +5,7 @@
 > “Hack(Comedy)” is a computational comedy interface that aims to interrogate our perception of humor through a procedurally live generation that copies and reflects condensed themes and identities in the American comedy landscape. The artist undertakes an unexpected method of programming to achieve comic absurdity by generating materials from borrowed comic sources.
 
 ## You can try it here
+
 [hackcomedy.net](www.hackcomedy.net)
 
 ## How to interact
@@ -20,7 +21,7 @@ This application is built with Vue Cli.
 
 ## Clone and Run locally
 
-``` bash
+```bash
 
 # install dependencies
 npm install
@@ -30,13 +31,8 @@ npm run serve
 
 ```
 
-
 ## TODOs:
 
-- Rant-individualized?
-- Add more source
-- Add revelation/info/about
-- Source word count
-- Write mode exclusive
+--
 
 Copyright (c) 2020 Lan Zhang
