@@ -33,6 +33,6 @@ npm run serve
 
 ## TODOs:
 
---
+Heroku Cred: yzhan76
 
 Copyright (c) 2020 Lan Zhang
