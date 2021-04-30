@@ -38,6 +38,8 @@ $npm run serve
 1. Once you have the interface running on a chrome browser, enter FULL-SCREEN mode.
 1. You should be all set.
 
+![installation image](/src/assets/img/03hackComedy_in-situB.png)
+
 
 Heroku Cred: yzhan76
 
